@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VanceyA Drawing App 👨‍🎨</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+        <script src="app.js" defer></script>
+    </head>
+    <body>
+        <div id="app">
+            <canvas id="canvas" @mouseup="mouseUpHandler" @mousedown="mouseDownHandler" @mousemove="mouseMoveHandler" :style="{'background-color': bodyColor}" :class="{'partyMode': partyMode}"></canvas>
+            <div class="nav">
+                <template v-for="color in colors">
+                    <div class="clr" @click="changeColor(color)"></div>
+                </template>
+
+                <button class="clear" @click="clearCanvas">Clear</button>
+                <button class="save" @click="saveDrawing">Save</button>
+                <input type="color" value="#FFFFFF" v-model="bodyColor" @input="bodyColorChangeHandler">
+                <input type="range" name="lineWidthName" class="lineWidth" value="5" min="1" max="10" v-model="lineW" @input="widthChangeHandler">
+                <output>{{ lineW }}</output>
+                <div class="emoji" @click="activatePartyMode">🎨</div>
+            </div>
+        </div>
+        
+    </body>
+</html>
